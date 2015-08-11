@@ -15,6 +15,8 @@ android的消息处理有三个核心类：Looper,Handler和Message。其实还�
 ### Looper ###
 
 ### Handler ###
+> 定义：
+
 
 
 
