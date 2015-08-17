@@ -15,7 +15,7 @@ android的消息处理有三个核心类：Looper,Handler和Message。其实还�
 ### Looper ###
 
 ### Handler ###
-> 定义：
+> 定义： Handler主要接收子线程发送的数据,并用此数据配合主线程更新UI，用来跟UI主线程交互用。
 
 
 
