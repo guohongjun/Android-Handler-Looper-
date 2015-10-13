@@ -28,6 +28,8 @@ void removeMessage()：从消息队列中移除一个未响应的消息。
 
 
 ### MessageQueue ###
+> 消息队列MessageQueue只是存储Message的地方.
+
 
 ### Looper ###
 > 消息队列MessageQueue只是存储Message的地方，真正让消息队列循环起来的是Looper，这就好比消息队列MessageQueue是个水车，那么Looper就是让水车转动起来的河水，如果没有河水，那么水车就是个静止的摆设，没有任何用处，Looper让MessageQueue动了起来，有了活力。
