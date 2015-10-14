@@ -6,7 +6,7 @@ android的消息处理机制是消息驱动的，要是实现消息驱动需要�
 - 消息循环  Looper，用于循环MessageQueue中消息。
 - 消息处理  Handler，用于处理Looper取出的Message。
 
-android的消息处理有三个核心类：Looper,Handler和Message。其实还有一个Message Queue（消息队列），但是MQ被封装到Looper里面了，我们不会直接与MQ打交道，因此我没将其作为核心类。下面一一介绍下：
+android的消息处理有三个核心类：Looper,Handler和Message。其实还有一个MessageQueue（消息队列），但是Message被封装到Looper里面了，我们不会直接与Message打交道，因此我没将其作为核心类。下面一一介绍下：
 ### Message###
 > Message是一个final类，所有不可继承，Message封装了线程中传递的消息，对于一般的数据Message提供了getData()和setData()方法来获取与设置数据，其中操作的数据是一个Bundle对象，这个Bundle对象提供了一系列的getXxx()和setXxx()方法用于传递基本数据类型的键值对。对于复杂的数据类型，Bundle提供了两个方法，专门用来传递对象，但是这两个方法也有相应的限制，需要实现特定的接口。
 putParcelable(String key,Parcelable value)：需要传递的对象类实现Parcelable接口。
@@ -26,14 +26,15 @@ boolean sendEmptyMessage(int what)：发送一个空的Message对象到队列中
 boolean sendEmptyMessageDelayed(int what,long delayMillis)：发送一个空Message对象到消息队列中，在UI线程取到消息后，延迟执行。
 void removeMessage()：从消息队列中移除一个未响应的消息。
 
-
 ### MessageQueue ###
+
 > 消息队列MessageQueue只是存储Message的地方.
 
-
 ### Looper ###
+
 > 消息队列MessageQueue只是存储Message的地方，真正让消息队列循环起来的是Looper，这就好比消息队列MessageQueue是个水车，那么Looper就是让水车转动起来的河水，如果没有河水，那么水车就是个静止的摆设，没有任何用处，Looper让MessageQueue动了起来，有了活力。
 ### Handler ###
+
 > 定义： Handler主要接收子线程发送的数据,并用此数据配合主线程更新UI，用来跟UI主线程交互用。
 
 - 一个Handler会允许你发送和处理Message或者Runnable对象关联到一个线程的消息队列MessageQueue中,每一个Handler的实例都会关联一个单一的线程和那个线程的消息队列中。当你创建一个一个新的Handler,它会绑定到你创建的线程和这个线程消息队列中。并且指向好它，它会让消息传递到关联好它的消息队列中，当它从消息队列出队的时候执行它。这里他们的如何关联的不是很懂！
