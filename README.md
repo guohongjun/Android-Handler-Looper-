@@ -1,4 +1,4 @@
-﻿# Android 消息处理机制
+# Android 消息处理机制
 android的消息处理机制是消息驱动的，要是实现消息驱动需要以下几个元素：
 
 - 消息 Message
@@ -28,14 +28,19 @@ void removeMessage()：从消息队列中移除一个未响应的消息。
 
 ### MessageQueue ###
 
-> 消息队列MessageQueue只是存储Message的地方.
+> 消息队列MessageQueue只是存储Message的地方，这个集合里面装有很多个Runnable、Message。
 
 ### Looper ###
 
 > 消息队列MessageQueue只是存储Message的地方，真正让消息队列循环起来的是Looper，这就好比消息队列MessageQueue是个水车，那么Looper就是让水车转动起来的河水，如果没有河水，那么水车就是个静止的摆设，没有任何用处，Looper让MessageQueue动了起来，有了活力。
+
+> loopr为message轮询器，在 Looper里面的 loop()函数中有个死循环,它不断地从 MessageQueue 中取出一个Message,然后传给Handler进行处理,如此循环往复。假如队列为空,那么它会进入休眠。
+
 ### Handler ###
 
 > 定义： Handler主要接收子线程发送的数据,并用此数据配合主线程更新UI，用来跟UI主线程交互用。
+
+> 用途：它主要有两大作用：① 处理Message。② 发送Message，并将某个Message压入到MessageQueue中。
 
 - 一个Handler会允许你发送和处理Message或者Runnable对象关联到一个线程的消息队列MessageQueue中,每一个Handler的实例都会关联一个单一的线程和那个线程的消息队列中。当你创建一个一个新的Handler,它会绑定到你创建的线程和这个线程消息队列中。并且指向好它，它会让消息传递到关联好它的消息队列中，当它从消息队列出队的时候执行它。这里他们的如何关联的不是很懂！
 
